@@ -16,6 +16,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+  display: block;
+  color: white;
+}
+
 main {
   display: flex;
   align-items: center;
@@ -30,14 +38,16 @@ main {
   margin: 20px;
 }
 
-.main-screen-user-interface__group-buttons {
+.main-screen-user-interface__group-buttons,
+.main-screen-user-interface__group-pass-title {
   display: flex;
   gap: 20px;
   padding: 20px;
   border-bottom: 1px solid black;
 }
 
-.btn {
+.btn-danger,
+.btn-success {
   width: 200px;
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
 }
@@ -71,4 +81,52 @@ main {
 .main-screen-user-interface__list-sites {
   display: flex;
   flex-direction: column;
+}
+
+/*Pass saver*/
+
+.main-screen-user-interface__title-pass-saver {
+  color: rgb(159, 157, 157);
+}
+
+.main-screen-user-interface__group-form {
+  padding: 20px;
+}
+
+.main-screen-user-interface__group-form
+  .main-screen-user-interface__group-confirm-site {
+  display: flex;
+  justify-content: center;
+}
+
+.main-screen-user-interface__group-form
+  .main-screen-user-interface__group-buttons {
+  border-bottom: none;
+}
+
+.main-screen-user-interface__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-control {
+  height: 30px;
+}
+
+.main-screen-user-interface__group-password {
+  display: flex;
+  align-items: center;
+}
+
+.input-group {
+  gap: 10px;
+}
+
+.main-screen-user-interface__icon-password {
+  width: 30px;
+}
+
+.main-screen-user-interface__description-area {
+  height: 100px;
 }
