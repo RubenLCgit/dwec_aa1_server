@@ -38,6 +38,10 @@ main {
   margin: 20px;
 }
 
+.main-screen-user-interface__list-categories .list-group-item:nth-child(2) {
+  border-top: 1px solid #dee2e6;
+}
+
 .main-screen-user-interface__group-buttons,
 .main-screen-user-interface__group-pass-title {
   display: flex;
@@ -62,6 +66,10 @@ main {
 
 .list-group-item {
   min-width: 250px;
+}
+
+.list-group-item > a {
+  color: black;
 }
 
 .list-group-horizontal:first-child,
