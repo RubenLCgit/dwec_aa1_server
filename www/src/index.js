@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const urlCategory =
         "http://localhost:3000/categories" + "/" + idAddCategory;
       fetch(urlCategory)
-        .then((res) => res.json())
+        .then((res2) => res2.json())
         .then((data2) => showSites(data2.sites));
     }
   });
@@ -120,20 +120,35 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   //DELETE CATEGORY
-  /*
-  let idAddCategory;
-  const linkCategory = document.getElementsByClassName(
-    "main-screen-user-interface__list-categories"
-  )[0];
-  linkCategory.addEventListener("click", function (event) {
-    if (event.target.matches(".link-group-item")) {
-      event.preventDefault();
-      idAddCategory = event.target.id;
-      const urlCategory = "http://localhost:3000/categories" + "/" + idAddCategory;
-      fetch(urlCategory)
-        .then((res) => res.json())
-        .then((data2) => showSites(data2.sites));
-    }
+
+  const buttonDeleteCategory = document.getElementById(
+    "button-category-delete"
+  );
+  buttonDeleteCategory.addEventListener("click", function () {
+    let allCategories = document.getElementsByClassName("link-category");
+    let idDeleteCategory;
+    [...allCategories].forEach((element) => {
+      if (element.style.backgroundColor == "rgba(102, 102, 135, 0.48)") {
+        idDeleteCategory = element.children[0].id;
+      }
+    });
+    deleteCategory(idDeleteCategory);
   });
-  */
+
+  let deleteCategory = (id) => {
+    if (id) {
+      let endPointCategory = "http://localhost:3000/categories/" + id;
+      fetch(endPointCategory, {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => showCategories(data));
+      location.reload();
+    } else {
+      alert("You must select a category to delete it");
+    }
+  };
 });
