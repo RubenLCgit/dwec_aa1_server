@@ -74,31 +74,39 @@ main {
   margin: 20px;
 }
 
-.list-group-item {
+.main-screen-user-interface__group-sites-buttonAdd .list-group-item {
   min-width: 250px;
+  max-width: 250px;
+  max-height: 80px;
+}
+
+.main-screen-user-interface__list-sites .list-group-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .list-group-item > a {
   color: black;
 }
 
-.list-group-horizontal:first-child,
-.main-screen-user-interface__list-categories .list-group-item:first-child {
+.main-screen-user-interface__title-sites > .list-group-item,
+#list-categories > .list-group-item:first-child {
+  background-color: rgb(159, 157, 157);
+  color: whitesmoke;
+}
+
+.main-screen-user-interface__title-list-sites {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 20px;
 }
 
-.list-group-horizontal:first-child > .list-group-item,
-.main-screen-user-interface__list-categories .list-group-item:first-child {
-  background-color: rgb(159, 157, 157);
-  color: whitesmoke;
-}
-
-.main-screen-user-interface__list-sites {
-  display: flex;
-  flex-direction: column;
+.description-scroll {
+  overflow-y: scroll;
 }
 
 /*Pass saver*/
