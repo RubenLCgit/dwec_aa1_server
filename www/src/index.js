@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     data.forEach((category) => {
       let parent = document.getElementById("list-categories");
       let child = document.createElement("li");
-      child.className = "list-group-item";
+      child.className = "list-group-item link-category";
       parent.appendChild(child);
       let child2 = document.createElement("a");
       child2.href = "index.html";
@@ -58,22 +58,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //SHOW SITES
 
-  let idCategory;
+  let idAddCategory;
   const linkCategory = document.getElementsByClassName(
     "main-screen-user-interface__list-categories"
   )[0];
   linkCategory.addEventListener("click", function (event) {
     if (event.target.matches(".link-group-item")) {
       event.preventDefault();
-      idCategory = event.target.id;
-      const urlCategory = "http://localhost:3000/categories" + "/" + idCategory;
+      idAddCategory = event.target.id;
+      const urlCategory =
+        "http://localhost:3000/categories" + "/" + idAddCategory;
       fetch(urlCategory)
-        .then((res) => res.json())
+        .then((res2) => res2.json())
         .then((data2) => showSites(data2.sites));
     }
   });
 
   let showSites = (sites) => {
+    let selectedCategory = document.getElementById(idAddCategory).parentElement;
+    let allCategories = document.getElementsByClassName("link-category");
+    [...allCategories].forEach((element) => {
+      element.style.backgroundColor = "rgba(114, 180, 133, 0.219)";
+    });
+    selectedCategory.style.backgroundColor = "#6666877a";
     let parent = document.getElementsByClassName(
       "main-screen-user-interface__list-sites"
     )[0];
@@ -85,13 +92,16 @@ document.addEventListener("DOMContentLoaded", function () {
       child.className = "list-group list-group-horizontal";
       parent.appendChild(child);
       let child2 = document.createElement("li");
-      child2.className = "list-group-item  description-scroll";
+      child2.className = "list-group-item";
       child2.textContent = site.name;
       child.appendChild(child2);
       let child3 = document.createElement("li");
       child3.className = "list-group-item";
-      child3.textContent = site.url;
+      let linkUrl = document.createElement("a");
+      linkUrl.href = site.url;
+      linkUrl.textContent = site.url;
       child.appendChild(child3);
+      child3.appendChild(linkUrl);
       let child4 = document.createElement("li");
       child4.className = "list-group-item";
       child4.textContent = site.user;
@@ -102,8 +112,43 @@ document.addEventListener("DOMContentLoaded", function () {
       child.appendChild(child5);
       let child6 = document.createElement("li");
       child6.className = "list-group-item description-scroll";
-      child6.textContent = site.description;
+      let textDescript = document.createElement("p");
+      textDescript.textContent = site.description;
       child.appendChild(child6);
+      child6.appendChild(textDescript);
     });
+  };
+
+  //DELETE CATEGORY
+
+  const buttonDeleteCategory = document.getElementById(
+    "button-category-delete"
+  );
+  buttonDeleteCategory.addEventListener("click", function () {
+    let allCategories = document.getElementsByClassName("link-category");
+    let idDeleteCategory;
+    [...allCategories].forEach((element) => {
+      if (element.style.backgroundColor == "rgba(102, 102, 135, 0.48)") {
+        idDeleteCategory = element.children[0].id;
+      }
+    });
+    deleteCategory(idDeleteCategory);
+  });
+
+  let deleteCategory = (id) => {
+    if (id) {
+      let endPointCategory = "http://localhost:3000/categories/" + id;
+      fetch(endPointCategory, {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => showCategories(data));
+      location.reload();
+    } else {
+      alert("You must select a category to delete it");
+    }
   };
 });

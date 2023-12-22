@@ -36,6 +36,7 @@ main {
   border: 1px solid black;
   flex-wrap: wrap;
   margin: 20px;
+  background-color: rgba(114, 155, 180, 0.219);
 }
 
 .main-screen-user-interface__list-categories .list-group-item:nth-child(2) {
@@ -80,10 +81,23 @@ main {
   max-height: 80px;
 }
 
+#list-categories .list-group-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(114, 180, 133, 0.219);
+}
+
 .main-screen-user-interface__list-sites .list-group-item {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  background-color: rgba(255, 0, 0, 0.176);
+}
+
+.main-screen-user-interface__list-sites .list-group-item:last-child {
+  align-items: start;
 }
 
 .list-group-item > a {
@@ -105,8 +119,13 @@ main {
   margin-bottom: 20px;
 }
 
+.main-screen-user-interface__list-sites > .list-group a:hover {
+  color: white;
+}
+
 .description-scroll {
   overflow-y: scroll;
+  text-align: justify;
 }
 
 /*Pass saver*/
