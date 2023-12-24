@@ -110,7 +110,8 @@ main {
   color: whitesmoke;
 }
 
-.main-screen-user-interface__title-list-sites {
+.main-screen-user-interface__title-list-sites,
+#list-categories .list-group-item:first-child {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -161,7 +162,7 @@ main {
 
 .main-screen-user-interface__group-password {
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 
 .input-group {

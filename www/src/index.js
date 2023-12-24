@@ -18,7 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   fetch("http://localhost:3000/categories")
     .then((res) => res.json())
-    .then((data) => showCategories(data));
+    .then((data) => showCategories(data))
+    .catch((error) => {
+      alert("Error adding category");
+      console.error("Error adding category:", error.message);
+    });
 
   //ADD CATEGORY
 
@@ -52,8 +56,11 @@ document.addEventListener("DOMContentLoaded", function () {
       body: JSON.stringify(nameCategory),
     })
       .then((res) => res.json())
-      .then((data) => showCategories(data));
-    location.reload();
+      .then(() => location.reload())
+      .catch((error) => {
+        alert("Error adding category :" + error.message);
+        console.error("Error adding category:", error);
+      });
   };
 
   //SHOW SITES
@@ -70,7 +77,11 @@ document.addEventListener("DOMContentLoaded", function () {
         "http://localhost:3000/categories" + "/" + idAddCategory;
       fetch(urlCategory)
         .then((res2) => res2.json())
-        .then((data2) => showSites(data2.sites));
+        .then((data2) => showSites(data2.sites))
+        .catch((error) => {
+          alert("Error loading sites");
+          console.error("Error adding category sites:", error.message);
+        });
     }
   });
 
@@ -144,11 +155,35 @@ document.addEventListener("DOMContentLoaded", function () {
           "Content-type": "application/json",
         },
       })
-        .then((res) => res.json())
-        .then((data) => showCategories(data));
-      location.reload();
+        .then(() => {
+          location.reload();
+        })
+        .catch((error) => {
+          alert("Error deleting category: ");
+          console.error("Error deleting category:", error.message);
+        });
     } else {
       alert("You must select a category to delete it");
     }
   };
+
+  //ADD SITE
+
+  const buttonAddSite = document.getElementsByClassName(
+    "main-screen-user-interface__link-site"
+  )[0];
+  buttonAddSite.addEventListener("click", function (event) {
+    let allCategories = document.getElementsByClassName("link-category");
+    let idSiteCategory;
+    [...allCategories].forEach((element) => {
+      if (element.style.backgroundColor == "rgba(102, 102, 135, 0.48)") {
+        idSiteCategory = element.children[0].id;
+      }
+    });
+    if (idAddCategory) {
+      buttonAddSite.href = "sites.html?idCategory=" + idSiteCategory;
+    } else {
+      alert("You must select a category");
+    }
+  });
 });
