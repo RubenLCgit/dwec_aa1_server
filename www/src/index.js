@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const buttonAddSite = document.getElementsByClassName(
     "main-screen-user-interface__link-site"
   )[0];
-  buttonAddSite.addEventListener("click", function (event) {
+  buttonAddSite.addEventListener("click", function () {
     let allCategories = document.getElementsByClassName("link-category");
     let idSiteCategory;
     [...allCategories].forEach((element) => {
@@ -186,4 +186,57 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("You must select a category");
     }
   });
+
+  //DELETE SITE
+
+  const buttonDeleteSite = document.getElementById("button-site-delete");
+  buttonDeleteSite.addEventListener("click", function () {
+    let nameSite;
+    do {
+      nameSite = prompt("Enter the site name to be deleted", "");
+      if (nameSite === null) {
+        alert("Operation canceled by user.");
+        break;
+      }
+      if (nameSite.trim() === "") {
+        alert("Please enter a valid name.");
+      }
+    } while (nameSite === null || nameSite.trim() === "");
+    if (nameSite !== null && nameSite.trim() !== "") {
+      fetch("http://localhost:3000/sites")
+        .then((res) => res.json())
+        .then((data) => deleteSite(nameSite, data))
+        .catch((error) => {
+          alert("Error reading sites");
+          console.error("Error reading sites:", error.message);
+        });
+    }
+  });
+
+  let deleteSite = (name, data) => {
+    let idSite;
+    let nameSites = [];
+    data.forEach((site) => {
+      nameSites.push(site.name);
+      if (site.name === name) {
+        idSite = site.id;
+      }
+    });
+    if (nameSites.includes(name)) {
+      let endPointSite = "http://localhost:3000/sites/" + idSite;
+      fetch(endPointSite, {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+        .then(() => {
+          location.reload();
+        })
+        .catch((error) => {
+          alert("Error deleting site");
+          console.error("Error deleting site:", error.message);
+        });
+    } else alert("The name entered doesn't exist");
+  };
 });
