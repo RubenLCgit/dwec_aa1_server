@@ -1,0 +1,180 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100vh;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+  display: block;
+  color: white;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+}
+
+.main-screen-user-interface {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  flex-wrap: wrap;
+  margin: 20px;
+  background-color: rgba(114, 155, 180, 0.219);
+}
+
+.main-screen-user-interface__list-categories .list-group-item:nth-child(2) {
+  border-top: 1px solid #dee2e6;
+}
+
+.main-screen-user-interface__group-buttons,
+.main-screen-user-interface__group-pass-title {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  border-bottom: 1px solid black;
+}
+
+.btn-danger,
+.btn-success {
+  width: 200px;
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.main-screen-user-interface__group-lists {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.main-screen-user-interface__group-sites-buttonAdd {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-screen-user-interface__button-site {
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+}
+
+.main-screen-user-interface__group-sites-buttonAdd .list-group-item {
+  min-width: 250px;
+  max-width: 250px;
+  max-height: 80px;
+}
+
+#list-categories .list-group-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(114, 180, 133, 0.219);
+}
+
+.main-screen-user-interface__list-sites .list-group-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(255, 0, 0, 0.176);
+}
+
+.main-screen-user-interface__list-sites .list-group-item:last-child {
+  align-items: start;
+}
+
+.list-group-item > a {
+  color: black;
+}
+
+.main-screen-user-interface__title-sites > .list-group-item,
+#list-categories > .list-group-item:first-child {
+  background-color: rgb(159, 157, 157);
+  color: whitesmoke;
+}
+
+.main-screen-user-interface__title-list-sites,
+#list-categories .list-group-item:first-child {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.main-screen-user-interface__list-sites > .list-group a:hover {
+  color: white;
+}
+
+.description-scroll {
+  overflow-y: scroll;
+  text-align: justify;
+}
+
+/*Pass saver*/
+
+.main-screen-user-interface__title-pass-saver {
+  color: rgb(159, 157, 157);
+}
+
+.main-screen-user-interface__group-form {
+  padding: 20px;
+}
+
+.main-screen-user-interface__group-form
+  .main-screen-user-interface__group-confirm-site {
+  display: flex;
+  justify-content: center;
+}
+
+.main-screen-user-interface__group-form
+  .main-screen-user-interface__group-buttons {
+  border-bottom: none;
+}
+
+.main-screen-user-interface__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-control {
+  height: 30px;
+}
+
+.main-screen-user-interface__group-password {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  gap: 10px;
+}
+
+.main-screen-user-interface__icon-password {
+  width: 30px;
+}
+
+.main-screen-user-interface__description-area {
+  height: 100px;
+}
